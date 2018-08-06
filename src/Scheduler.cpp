@@ -104,17 +104,18 @@ void Scheduler::controlloop(){
 	printf("//**********************************************\n");
 
 }
+/*
 void Scheduler::vrepsimrunning(const dentopt_nmpc_controller::VrepInfo& msgInfo){
 	//	printf("\n%u\n",msgInfo.simulatorState.data);
-	int info=msgInfo.simulatorState.data;
+	int info=msgInfo.simulatorState; // Not using std::Float64 but float64 allows not to use .data
 	bool old_vrep_flag_stop =vrep_flag_stop_;
 	bool old_vrep_flag_pause=vrep_flag_pause_;
 	//Bit 0 True for simulation not stopped
 	//Bit 1 True for simulation paused
-	vrep_flag_stop_=!(info&0b001);
+	vrep_flag_stop_=!(info&0b001); // This enum should be in the message
 	vrep_flag_pause_=(info&0b010);
 	vrep_flag_realtime_=(info&0b100);
-	vrep_time_=msgInfo.simulationTime.data;
+	vrep_time_=msgInfo.simulationTime;
 	//printf("Vrep Flag: Stop:%d Pause:%d\n",vrep_flag_stop_,vrep_flag_pause_);
 	if((vrep_flag_stop_)&&(!old_vrep_flag_stop)){
 		printf( "!!!!!!!!!!!!!!!!!!\n");
@@ -127,12 +128,13 @@ void Scheduler::vrepsimrunning(const dentopt_nmpc_controller::VrepInfo& msgInfo)
 		printf( "!!!!!!!!!!!!!!!!!\n");
 	}
 }
+*/
 void Scheduler::vrepcontrolloop(){
 	//Get Vrep simulation
-	ros::Subscriber rosSubscriberVrepInfo;
-	ros::NodeHandle rosNodeVrepInfo;
-	//Get info about Vrep Simulation
-	rosSubscriberVrepInfo = rosNodeVrepInfo.subscribe(rosNodeVrepInfo.resolveName("vrep/info"),1,&Scheduler::vrepsimrunning,this);
+	// ros::Subscriber rosSubscriberVrepInfo; // This should be moved to the constructor
+	// ros::NodeHandle rosNodeVrepInfo;
+	// //Get info about Vrep Simulation
+	// rosSubscriberVrepInfo = rosNodeVrepInfo.subscribe(rosNodeVrepInfo.resolveName("vrep/info"),1,&Scheduler::vrepsimrunning,this);
 	//Printing loop start screen
 		printf("//---------------------------------------------\n");
 		printf("// Start VREP Control Loop \n");

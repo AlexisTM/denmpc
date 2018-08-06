@@ -19,7 +19,6 @@
 #include <ros/ros.h>	//For ros::
 #include "std_msgs/Bool.h"
 
-#include <dentopt_nmpc_controller/VrepInfo.h>
 #include <boost/filesystem.hpp>
 #include <Controller.h>
 //#include "YamlInterface.h"
