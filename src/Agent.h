@@ -110,7 +110,7 @@ protected:
 		for(int i=0;i<dim;i++){
 #ifdef INPUTDATA_CHECK
 			//CHECK IF DATA IS NAN => SET TO 0
-			if(isnan(vector[i])){
+			if(std::isnan(vector[i])){
 				out[i]=0;
 				std::cout<<"!!! In "<<name_<<": "<<error<<"["<<i<<"] ERROR NAN DETECTED!"<<std::endl;
 			}
@@ -125,7 +125,7 @@ protected:
 		for(int i=0;i<dim;i++){
 #ifdef INPUTDATA_CHECK
 			//CHECK IF DATA IS NAN => SET TO 0
-			if(isnan(vector[i])){
+			if(std::isnan(vector[i])){
 				out[i]=0;
 				std::cout<<"!!! In "<<name_<<": "<<error<<"["<<i<<"] ERROR NAN DETECTED!"<<std::endl;
 			}
