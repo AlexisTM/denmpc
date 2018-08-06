@@ -1,4 +1,4 @@
-std_msgs/Header headerInfo
-std_msgs/Int32 simulatorState
-std_msgs/Float32 simulationTime
-std_msgs/Float32 timeStep
+Header headerInfo
+int32 simulatorState
+float32 simulationTime
+float32 timeStep

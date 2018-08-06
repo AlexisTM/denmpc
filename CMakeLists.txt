@@ -31,7 +31,7 @@ add_message_files(  FILES  VrepInfo.msg)
 ###################################
 
 catkin_package(
-  INCLUDE_DIRS ${catkin_INCLUDE_DIRS}
+  INCLUDE_DIRS src
 #  LIBRARIES symbolic
   CATKIN_DEPENDS roscpp rospy std_msgs message_runtime
   DEPENDS Boost
@@ -49,6 +49,7 @@ include_directories(
   src/user_scenarios
   src/controller
   include
+  ${catkin_INCLUDE_DIRS}
 )
 SET( LIB_CONTROLLER_DIR  src/user_generated)
 set(LIB_CONTROLLER_SOURCES 
@@ -60,7 +61,7 @@ set(LIB_CONTROLLER_SOURCES
 	src/MathLib.cpp 
 	src/Event.cpp
 	src/Scheduler.cpp 
-	)
+)
 FILE( GLOB CONTROLLERSOURCES ${LIB_CONTROLLER_DIR}/*.cpp )
 FOREACH( SRC ${CONTROLLERSOURCES} )
 	SET( LIB_CONTROLLER_SOURCES ${LIB_CONTROLLER_SOURCES}  ${SRC} )
@@ -79,6 +80,6 @@ SET(NODENAME ${SRC})
 get_filename_component(NODENAME ${SRC} NAME_WE)
 SET(NODENAME scenario_${NODENAME}_node)
 add_executable(${NODENAME} ${SRC}  ${LIB_CONTROLLER_SOURCES})
-add_dependencies(${NODENAME} ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+add_dependencies(${NODENAME} ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS} denmpc_generate_messages_cpp)
 target_link_libraries(${NODENAME} ${catkin_LIBRARIES} )
 ENDFOREACH( SRC ${USER_CODE} )
