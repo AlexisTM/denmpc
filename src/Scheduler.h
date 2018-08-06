@@ -16,7 +16,7 @@
 
 #include <ros/ros.h>	//For ros::
 
-#include "dentopt_nmpc_controller/VrepInfo.h"
+#include <dentopt_nmpc_controller/VrepInfo.h>
 #include <boost/filesystem.hpp>
 #include "Event.h"
 #include "Controller.h"
